@@ -9,8 +9,8 @@ body {
 }
 
 section {
-    width: 300px;
-    height: 350px;
+    width: 250px;
+    height: min-content;
     background-color: rgba(255, 255, 255, 0.4);
     border-radius: 12px;
     box-shadow: 0px 0px 10px 5px #313131;
