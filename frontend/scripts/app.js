@@ -49,14 +49,15 @@ function sendData() {
         .then(res => res.json())
         .then(data => {
             if (data) {
-                successfulModal.style.opacity = '1'
+                successfulModal.style.display = 'block'
                 setTimeout(() => {
-                    successfulModal.style.opacity = '0'
+                    successfulModal.style.display = 'none'
                 } , 2000)
+                clearInputs()
             } else {
-                failedModal.style.opacity = '1'
+                failedModal.style.display = 'block'
                 setTimeout(() => {
-                    failedModal.style.opacity = '0'
+                    failedModal.style.display = 'none'
                 } , 2000)
             }
         })
