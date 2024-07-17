@@ -6,6 +6,7 @@ body {
     align-items: center;
     justify-content: center;
     background-color: #303030;
+    position: relative;
 }
 
 section {
@@ -50,6 +51,32 @@ button {
 button:hover{
     cursor: pointer;
     background-color: #214737;
+}
+
+.failed-register-msg{
+    width: max-content;
+    height: min-content;
+    padding: 20px;
+    color: white;
+    background-color: #973131;
+    position: absolute;
+    top : 0;
+    right: 15px;
+    border-radius: 5px;
+    display: none;
+}
+
+.successful-register-msg{
+    width: max-content;
+    height: min-content;
+    padding: 20px;
+    color: white;
+    background-color: #346751;
+    position: absolute;
+    top : 0;
+    right: 15px;
+    border-radius: 5px; 
+    display: none;
 }
 
 @media (min-width: 576px) {
