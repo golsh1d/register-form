@@ -33,7 +33,7 @@ div.main-content {
     box-shadow: 0px 0px 10px 5px #313131;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     padding: 20px;
     margin-bottom: 16px;
 }
@@ -56,6 +56,23 @@ div.user-icon{
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+button.del-btn{
+    width: 80px;
+    height: 30px;
+    background-color: #973131;
+    color: white;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    transition: all 0.2s ease;
+}
+
+button.del-btn:hover{
+    cursor: pointer;
+    background-color: #581616;
 }
 
 @media (min-width: 576px) {
