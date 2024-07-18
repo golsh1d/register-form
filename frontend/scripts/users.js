@@ -13,3 +13,29 @@ let nameInput = document.querySelector('.update-modal-name-input')
 let familyNameInput = document.querySelector('.update-modal-familyname-input')
 let userNameInput = document.querySelector('.update-modal-username-input')
 let passInput = document.querySelector('.update-modal-pass-input')
+
+function showDeleteModal() {
+    deleteModal.style.display = 'block'
+    updateModal.style.display = 'none'
+}
+
+function closeDeleteModal() {
+    deleteModal.style.display = 'none'
+}
+
+function showUpdateModal() {
+    updateModal.style.display = 'block'
+    deleteModal.style.display = 'none'
+}
+
+function closeUpdateModal() {
+    updateModal.style.display = 'none'
+}
+
+
+//events
+deleteBtn.addEventListener('click' , showDeleteModal)
+deleteModalClose.addEventListener('click' , closeDeleteModal)
+deleteModalNoBtn.addEventListener('click' , closeDeleteModal)
+updateBtn.addEventListener('click' , showUpdateModal)
+updateModalClose.addEventListener('click' , closeUpdateModal)
