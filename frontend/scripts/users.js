@@ -13,6 +13,7 @@ let nameInput = document.querySelector('.update-modal-name-input')
 let familyNameInput = document.querySelector('.update-modal-familyname-input')
 let userNameInput = document.querySelector('.update-modal-username-input')
 let passInput = document.querySelector('.update-modal-pass-input')
+let usersContainer = document.querySelector('section')
 
 function showDeleteModal() {
     deleteModal.style.display = 'block'
@@ -32,9 +33,39 @@ function closeUpdateModal() {
     updateModal.style.display = 'none'
 }
 
+function showUsersList() {
+    fetch('http://localhost:3000/api/users/get-all-users')
+    .then(res => res.json())
+    .then(data => {
+        if (data) {
+            data.forEach(obj => {
+            usersContainer.insertAdjacentHTML(`beforeend`,
+                `<div class="main-content">
+                    <div class="left-section">
+                        <div class="user-icon">
+                            <span class="material-symbols-outlined">
+                                person
+                            </span>
+                        </div>
+                        <div class="user-info">
+                            <p>Name : <span class="name-span">${obj.name}</span></p>
+                            <p>Familyname : <span class="familyname-span">${obj.familyName}</span></p>
+                        </div>
+                        </div>
+                        <div class="right-section">
+                            <div>
+                                <button class="del-btn">Delete</button>
+                            </div>
+                            <div>
+                                <button class="update-btn">Update</button>
+                            </div>
+                        </div>
+                    </div>`
+                )  
+            })
+        }
+    })
+}
+
 //events
-deleteBtn.addEventListener('click' , showDeleteModal)
-deleteModalClose.addEventListener('click' , closeDeleteModal)
-deleteModalNoBtn.addEventListener('click' , closeDeleteModal)
-updateBtn.addEventListener('click' , showUpdateModal)
-updateModalClose.addEventListener('click' , closeUpdateModal)
+window.addEventListener('load' , showUsersList)
