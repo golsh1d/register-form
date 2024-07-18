@@ -32,7 +32,6 @@ function closeUpdateModal() {
     updateModal.style.display = 'none'
 }
 
-
 //events
 deleteBtn.addEventListener('click' , showDeleteModal)
 deleteModalClose.addEventListener('click' , closeDeleteModal)

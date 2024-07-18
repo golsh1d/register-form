@@ -27,6 +27,17 @@ sqlConnection.connect(err => {
                 }
             })
         })
+        userRouter.get('/get-all-users' , (req , res) => {
+            let newSelectQuery = `SELECT * FROM users`
+            sqlConnection.query(newSelectQuery , (err , result) => {
+                if (err) {
+                    console.log(err);
+                } else {
+                    console.log(result);
+                    res.send(result)
+                }
+            })
+        })
     }
 })
 
