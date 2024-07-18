@@ -48,6 +48,28 @@ sqlConnection.connect(err => {
                 }
             })
         })
+        userRouter.post('/get-selected-user-data' , (req , res) => {
+            let selectedUserInfo = req.body
+            let selectedUserQuery = `SELECT name, familyName, userName, password FROM users WHERE id = ${selectedUserInfo.id}`
+            sqlConnection.query(selectedUserQuery , (err , result) => {
+                if (err) {
+                    console.log(err);
+                } else {
+                    res.send(result)
+                }
+            })
+        })
+        userRouter.put('/update-user' , (req , res) => {
+            let selectedUserData = req.body
+            let selectedUserQuery = `UPDATE users SET name='${selectedUserData.name}',familyName='${selectedUserData.familyName}',userName='${selectedUserData.userName}',password='${selectedUserData.password}' WHERE id = ${selectedUserData.id}`
+            sqlConnection.query(selectedUserQuery , (err , result) => {
+                if(err) {
+                    console.log(err);
+                } else {
+                    res.send(JSON.stringify(true))
+                }
+            })
+        })
     }
 })
 

@@ -14,10 +14,12 @@ let familyNameInput = document.querySelector('.update-modal-familyname-input')
 let userNameInput = document.querySelector('.update-modal-username-input')
 let passInput = document.querySelector('.update-modal-pass-input')
 let usersContainer = document.querySelector('section')
+let overlayElem = document.querySelector('.overlay')
 
 function showDeleteModal(id) {
     deleteModal.style.display = 'block'
     updateModal.style.display = 'none'
+    overlayElem.style.display = 'block'
     deleteModalYesBtn.onclick = function() {
         userDeleteInfo = {
             id : id ,
@@ -32,9 +34,9 @@ function showDeleteModal(id) {
         .then(res => res.json())
         .then(data => {
             if (data) {
-                console.log(data);
                 closeDeleteModal()
                 showUsersList()
+                overlayElem.style.display = 'none'
             }
         })
     }
@@ -42,15 +44,61 @@ function showDeleteModal(id) {
 
 function closeDeleteModal() {
     deleteModal.style.display = 'none'
+    overlayElem.style.display = 'none' 
 }
 
-function showUpdateModal() {
+function showUpdateModal(id) {
     updateModal.style.display = 'block'
     deleteModal.style.display = 'none'
+    overlayElem.style.display = 'block'
+    userUpdateInfo = {
+        id : id
+    }
+    fetch('http://localhost:3000/api/users/get-selected-user-data' , {
+        method : 'POST',
+        headers : {
+            'Content-type' : 'application/json'
+        },
+        body : JSON.stringify(userUpdateInfo)
+    })
+    .then(res => res.json())
+    .then(data => {
+        if (data) {
+            nameInput.value = data[0].name
+            familyNameInput.value = data[0].familyName
+            userNameInput.value = data[0].userName
+            passInput.value = data[0].password
+        }
+    })
+    updateModalBtn.onclick = function () {
+        let selectedUserNewInfo = {
+            id : id,
+            name : nameInput.value,
+            familyName : familyNameInput.value,
+            userName : userNameInput.value,
+            password : passInput.value,
+        }
+        fetch('http://localhost:3000/api/users/update-user' , {
+            method : 'PUT',
+            headers : {
+                'Content-type' : 'application/json'
+            } ,
+            body : JSON.stringify(selectedUserNewInfo)
+        })
+        .then(res => res.json())
+        .then(data => {
+            if (data) {
+                showUsersList()
+                closeUpdateModal()
+                overlayElem.style.display = 'none'
+            }
+        })
+    }
 }
 
 function closeUpdateModal() {
     updateModal.style.display = 'none'
+    overlayElem.style.display = 'none' 
 }
 
 function showUsersList() {
@@ -77,7 +125,7 @@ function showUsersList() {
                             <div onclick="showDeleteModal(${obj.id})">
                                 <button class="del-btn">Delete</button>
                             </div>
-                            <div>
+                            <div onclick="showUpdateModal(${obj.id})">
                                 <button class="update-btn">Update</button>
                             </div>
                         </div>
@@ -88,11 +136,8 @@ function showUsersList() {
     })
 }
 
-function deleteUser() {
-
-}
-
 //events
 window.addEventListener('load' , showUsersList)
 deleteModalClose.addEventListener('click' , closeDeleteModal)
 deleteModalNoBtn.addEventListener('click' , closeDeleteModal)
+updateModalClose.addEventListener('click' , closeUpdateModal)
