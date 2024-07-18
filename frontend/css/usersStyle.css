@@ -98,6 +98,58 @@ button.update-btn:hover{
     background-color: #214737;
 }
 
+div.del-modal{
+    width: 450px;
+    height: min-content;
+    padding: 20px;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 16px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    position: absolute;
+    top: 0;
+}
+
+div.del-btn-container{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+div.del-modal button.yes-btn{
+    width: 48%;
+    height: 30px;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    background-color: #346751;
+    color: white;
+    transition: all 0.2s ease;
+}
+
+div.del-modal button.yes-btn:hover{
+    background-color: #214737;
+    cursor: pointer;
+}
+
+div.del-modal button.no-btn{
+    width: 48%;
+    height: 30px;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    background-color: #973131;
+    color: white;
+    transition: all 0.2s ease;
+}
+
+div.del-modal button.no-btn:hover{
+    background-color: #581616;
+    cursor: pointer;
+}
+
 @media (min-width: 576px) {
     .col-sm-1 {
         width: 8.33%;
