@@ -1,4 +1,35 @@
+body {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #303030;
+    position: relative;
+}
 
+div.title {
+    margin-bottom: 16px;
+    color: white;
+    font-weight: bolder;
+    font-size: 24px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    text-align: center;
+}
+
+div.main-content {
+    width: 280px;
+    height: min-content;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 12px;
+    box-shadow: 0px 0px 10px 5px #313131;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    margin-bottom: 16px;
+}
 
 @media (min-width: 576px) {
     .col-sm-1 {
