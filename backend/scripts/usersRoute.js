@@ -33,8 +33,18 @@ sqlConnection.connect(err => {
                 if (err) {
                     console.log(err);
                 } else {
-                    console.log(result);
                     res.send(result)
+                }
+            })
+        })
+        userRouter.delete('/delete-user' , (req ,res) => {
+            let newUserDelete = req.body
+            let newDeleteUserQuery = `DELETE FROM users WHERE id = ${newUserDelete.id}`
+            sqlConnection.query(newDeleteUserQuery , (err , result) => {
+                if (err) {
+                    console.log(err);
+                } else {
+                    res.send(JSON.stringify(true))
                 }
             })
         })

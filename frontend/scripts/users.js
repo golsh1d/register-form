@@ -15,9 +15,29 @@ let userNameInput = document.querySelector('.update-modal-username-input')
 let passInput = document.querySelector('.update-modal-pass-input')
 let usersContainer = document.querySelector('section')
 
-function showDeleteModal() {
+function showDeleteModal(id) {
     deleteModal.style.display = 'block'
     updateModal.style.display = 'none'
+    deleteModalYesBtn.onclick = function() {
+        userDeleteInfo = {
+            id : id ,
+        }
+        fetch('http://localhost:3000/api/users/delete-user' , {
+            method : 'DELETE',
+            headers : {
+                'Content-type' : 'application/json'
+            } , 
+            body : JSON.stringify(userDeleteInfo)
+        })
+        .then(res => res.json())
+        .then(data => {
+            if (data) {
+                console.log(data);
+                closeDeleteModal()
+                showUsersList()
+            }
+        })
+    }
 }
 
 function closeDeleteModal() {
@@ -34,6 +54,7 @@ function closeUpdateModal() {
 }
 
 function showUsersList() {
+    usersContainer.innerHTML = ''
     fetch('http://localhost:3000/api/users/get-all-users')
     .then(res => res.json())
     .then(data => {
@@ -53,7 +74,7 @@ function showUsersList() {
                         </div>
                         </div>
                         <div class="right-section">
-                            <div>
+                            <div onclick="showDeleteModal(${obj.id})">
                                 <button class="del-btn">Delete</button>
                             </div>
                             <div>
@@ -67,5 +88,11 @@ function showUsersList() {
     })
 }
 
+function deleteUser() {
+
+}
+
 //events
 window.addEventListener('load' , showUsersList)
+deleteModalClose.addEventListener('click' , closeDeleteModal)
+deleteModalNoBtn.addEventListener('click' , closeDeleteModal)
