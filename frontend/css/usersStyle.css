@@ -58,6 +58,13 @@ div.user-icon{
     justify-content: center;
 }
 
+div.right-section{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
 button.del-btn{
     width: 80px;
     height: 30px;
@@ -83,7 +90,6 @@ button.update-btn{
     border: none;
     outline: none;
     border-radius: 5px;
-    margin-bottom: 10px;
     transition: all 0.2s ease;
 }
 
